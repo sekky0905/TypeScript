@@ -259,10 +259,11 @@ namespace ts {
             result.reportsUnnecessary = diagnostic.reportsUnnecessary;
             result.source = diagnostic.source;
             const { relatedInformation } = diagnostic;
-            result.relatedInformation = relatedInformation &&
+            result.relatedInformation = relatedInformation ?
                 relatedInformation.length ?
-                relatedInformation.map(r => convertToDiagnosticRelatedInformation(r, newProgram)) :
-                emptyArray;
+                    relatedInformation.map(r => convertToDiagnosticRelatedInformation(r, newProgram)) :
+                    emptyArray :
+                undefined;
             return result;
         });
     }
@@ -641,10 +642,11 @@ namespace ts {
             result.reportsUnnecessary = diagnostic.reportsUnnecessary;
             result.source = diagnostic.source;
             const { relatedInformation } = diagnostic;
-            result.relatedInformation = relatedInformation &&
+            result.relatedInformation = relatedInformation ?
                 relatedInformation.length ?
-                relatedInformation.map(r => convertToReusableDiagnosticRelatedInformation(r)) :
-                emptyArray;
+                    relatedInformation.map(r => convertToReusableDiagnosticRelatedInformation(r)) :
+                    emptyArray :
+                undefined;
             return result;
         });
     }
